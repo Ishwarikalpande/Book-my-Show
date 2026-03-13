@@ -1,0 +1,147 @@
+/* ---------------- NAVBAR ---------------- */
+.navbar {
+    width: 100%;
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e71a0f;
+}
+
+.logo span {
+    color: black;
+}
+
+.left-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box input {
+    width: 350px;
+    height: 35px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.location {
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.signin {
+    background: #e71a0f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+
+/* ---------------- OFFER SLIDER ---------------- */
+.offer-slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.offer-btn {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.offer-card {
+    width: 720px;
+    height: 320px;
+    margin: 0 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+#offerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ---------------- MOVIES SECTION ---------------- */
+.section-heading {
+    margin-left: 40px;
+    font-size: 24px;
+    margin-top: 30px;
+}
+
+.movies-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 40px;
+}
+
+.movies-row::-webkit-scrollbar {
+    display: none;
+}
+
+.movie-box {
+    width: 160px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.movie-box img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.movie-name {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* ---------------- NAV LINK COLOR (GUARANTEED WORKING) ---------------- */
+
+/* Very strong selector + !important */
+body a.nav-link,
+p a.nav-link,
+a.nav-link,
+a.nav-link:link,
+a.nav-link:visited,
+a.nav-link:hover,
+a.nav-link:active {
+    color: #0096ff !important;      /* Sky blue */
+    font-weight: bold !important;   /* Bold */
+    text-decoration: none !important;
+    font-size: 16px !important;
+}
+
+a.nav-link:hover {
+    box-shadow: inset 0 -2px 0 #bfe8ff !important;
+}
+

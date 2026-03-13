@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration1</title>
+    <link rel="stylesheet" href="/static/css/register.css">
+</head>
+<body>
+
+<div class="container">
+<form action="" method="POST" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Registration" class="btn">
+</form>
+
+<p>Go to <a href="fifth">Contact Us </a></p>
+<p>Go to <a href="{% url 'index' %}">Home page</a> </p>
+</div>
+
+</body>
+</html>

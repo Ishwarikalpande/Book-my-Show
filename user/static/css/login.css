@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #ffdde6; /* Baby Pink */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-card {
+    background: white;
+    padding: 40px 50px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.welcome {
+    text-align: center;
+    color: #ff3f8d;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.btn {
+    width: 100%;
+    background: #ff6fa8;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #ff3f8d;
+}
+
+/* OPTIONS BOX */
+.options-box {
+    background: #fff0f5;
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+    border: 1px solid #ffb6d2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.options-box h3 {
+    text-align: center;
+    color: #d6006b;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* LIST */
+.options-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options-box ul li {
+    margin: 12px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.options-box ul li a {
+    text-decoration: none;
+    color: #d6006b;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.options-box ul li a:hover {
+    color: #ff0077;
+}
+

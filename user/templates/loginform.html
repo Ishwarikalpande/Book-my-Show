@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Dashboard</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="login-card">
+        <h2 class="welcome">Welcome Ishwari</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+    <!-- OPTIONS BOX WITH SYMBOLS -->
+    <div class="options-box">
+    <h3>What Would You Like To Do?</h3>
+    <ul>
+        <li>👤 <a href="#">Update Your Profile</a></li>
+        <li>🎫 <a href="#">See Your Booking</a></li>
+        <li>⭐ <a href="#">Newly Recommended</a></li>
+        <li>🚪 <a href="#">Logout</a></li>
+    </ul>
+</div>
+<p class="nav-link">Go to <a href="{% url 'index' %}">Home page</a></p>
+
+</div>
+
+</body>
+</html>

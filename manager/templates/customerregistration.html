@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customer Details</title>
+</head>
+<body>
+<h1>Customer Bokking Details</h1>
+<table border="1">
+  <tr><td>ID</td>
+  <td>Name</td>
+  <td>Email</td>
+  <td>Movie_Name</td>
+  <td>Theater</td>
+  <td>Date</td>
+  <td>Time</td>
+  </tr>
+  {% for x in customer %}
+  <tr>
+    <td>{{x.id}}</td>
+    <td>{{x.name}}</td>
+    <td>{{x.email}}</td>
+    <td>{{x.movie_name}}</td>
+    <td>{{x.theater}}</td>
+    <td>{{x.date}}</td>
+    <td>{{x.time}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

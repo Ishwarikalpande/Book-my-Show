@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BookMyShow - Offer Slider Test</title>
+    <link rel="stylesheet" href="/static/css/gallery.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* ------- basic styling ------- */
+    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#222 }
+    .container { max-width:1100px; margin:36px auto; padding:0 16px; }
+
+    header.navbar {
+      display:flex; align-items:center; justify-content:space-between;
+      background:#fff; padding:12px 18px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .logo { font-weight:700; color:#e71a0f; font-size:20px; }
+    .location { padding:6px 10px; border-radius:6px; }
+
+    /* OFFER SLIDER - single image view */
+    .offer-area { margin-top:20px; display:flex; align-items:center; justify-content:center; gap:18px; }
+    .offer-btn {
+      background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:50%;
+      width:48px; height:48px; font-size:22px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .offer-card {
+      width:720px; max-width:90vw; height:320px; overflow:hidden; border-radius:12px;
+      background:#ddd; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+    .offer-card img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .controls { margin-top:10px; display:flex; gap:12px; align-items:center; justify-content:center; color:#555; }
+    .controls label { font-size:14px; }
+
+    /* movies row with names */
+    .section { margin-top:28px; }
+    .movies-row { display:flex; gap:18px; overflow-x:auto; padding:12px 0; }
+    .movie-box { width:160px; flex:0 0 auto; text-align:center; }
+    .movie-box img { width:100%; height:240px; object-fit:cover; border-radius:10px; display:block; }
+    .movie-name { margin-top:8px; font-weight:600; font-size:14px; color:#222; }
+
+    /* hide scrollbar on webkit */
+    .movies-row::-webkit-scrollbar, .movies-row::-webkit-scrollbar { display:none; }
+    body::-webkit-scrollbar { height:6px; }
+
+    /* ------------ NAV LINK STYLES (specific + fallback) ------------- */
+    /* Specific selector to beat other styles */
+    body a.nav-link,
+    .container a.nav-link,
+    p > a.nav-link,
+    a.nav-link:link,
+    a.nav-link:visited,
+    a.nav-link:hover,
+    a.nav-link:active {
+      color: #0096ff !important;      /* sky blue */
+      font-weight: 700 !important;    /* bold */
+      text-decoration: none !important;
+      font-size: 16px !important;
+      outline: none !important;
+    }
+
+    /* VISUAL: add subtle hover underline using box-shadow so some external text-decoration can't override it */
+    a.nav-link:hover {
+      text-decoration: none !important;
+      box-shadow: inset 0 -2px 0 #bfe8ff !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="navbar">
+      <div class="left-nav">
+        <div class="logo">book<span>my</span>show</div>
+
+        <!-- SEARCH BAR IN FRONT OF NAME -->
+        <input type="text" class="top-search" placeholder="Search for Movies, Events, Plays, Sports">
+      </div>
+
+      <select class="location">
+        <option selected>Amravati</option>
+        <option>Pune</option>
+        <option>Mumbai</option>
+        <option>Nashik</option>
+        <option>Nagpur</option>
+      </select>
+
+      <button class="signin">Sign in</button>
+    </header>
+
+
+    <!-- OFFER SLIDER (single-image swapping) -->
+    <h2 style="margin-top:20px">Latest Offers</h2>
+
+    <div class="offer-area" aria-label="Offer slider area">
+      <button class="offer-btn" id="offerLeft" title="Previous offer">&#10094;</button>
+
+      <div class="offer-card" id="offerCard" aria-live="polite">
+        <!-- image element updated by JS -->
+        <img id="offerImage" src="/static/image/popup.jpg" alt="Offer">
+      </div>
+
+      <button class="offer-btn" id="offerRight" title="Next offer">&#10095;</button>
+    </div>
+
+    <div class="controls" style="justify-content:center">
+      <label><input type="checkbox" id="autoToggle"> Auto slide every 3s</label>
+      <span id="debug" style="font-size:13px;color:#777"></span>
+    </div>
+
+    <!-- Recommended Movies with names -->
+    <div class="section">
+      <h2>Recommended Movies</h2>
+      <div class="movies-row" id="moviesRow">
+        <div class="movie-box"><img src="/static/image/Alfa.jpg" alt="Alfa"><div class="movie-name">Alfa</div></div>
+        <div class="movie-box"><img src="/static/image/border2.jpg" alt="Border 2"><div class="movie-name">Border 2</div></div>
+        <div class="movie-box"><img src="/static/image/kantara.jpg" alt="Kantara"><div class="movie-name">Kantara</div></div>
+        <div class="movie-box"><img src="/static/image/mahavtar.jpg" alt="Mahavtar"><div class="movie-name">Mahavtar</div></div>
+        <div class="movie-box"><img src="/static/image/chatrapati shivaji raje.jpg" alt="Chatrapati"><div class="movie-name">Chatrapati Shivaji</div></div>
+        <div class="movie-box"><img src="/static/image/the taj story.jpg" alt="The Taj Story"><div class="movie-name">The Taj Story</div></div>
+        <div class="movie-box"><img src="/static/image/ssktk.jpg" alt="SSKTK"><div class="movie-name">SSKTK</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ---- Offer slider logic (robust) ----
+    (function () {
+      const offers = [
+        "/static/image/popup.jpg",
+        "/static/image/popcorn2.jpg",
+        "/static/image/download1.jpg",
+        "/static/image/entertenment.jpg"
+      ];
+
+      let idx = 0;
+      const imgEl = document.getElementById("offerImage");
+      const leftBtn = document.getElementById("offerLeft");
+      const rightBtn = document.getElementById("offerRight");
+      const debug = document.getElementById("debug");
+      const autoToggle = document.getElementById("autoToggle");
+      let autoTimer = null;
+
+      function setDebug(msg) {
+        debug.textContent = msg;
+        console.log("[OfferSlider] " + msg);
+      }
+
+      function showIndex(i) {
+        if (!imgEl) return;
+        idx = ((i % offers.length) + offers.length) % offers.length;
+        imgEl.src = offers[idx];
+        setDebug("showing " + (idx+1) + " / " + offers.length + " — " + offers[idx]);
+      }
+
+      rightBtn.addEventListener("click", () => { showIndex(idx + 1); resetAuto(); });
+      leftBtn.addEventListener("click",  () => { showIndex(idx - 1); resetAuto(); });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") { showIndex(idx + 1); resetAuto(); }
+        if (e.key === "ArrowLeft")  { showIndex(idx - 1); resetAuto(); }
+      });
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(() => showIndex(idx + 1), 3000);
+        setDebug("auto ON (3s)");
+      }
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; setDebug("auto OFF"); }
+      }
+      function resetAuto() {
+        if (autoToggle.checked) startAuto();
+      }
+
+      autoToggle.addEventListener("change", () => {
+        if (autoToggle.checked) startAuto(); else stopAuto();
+      });
+
+      showIndex(0);
+
+      imgEl.addEventListener("error", () => {
+        setDebug("ERROR loading image: " + imgEl.src + " — check that the file exists & path is correct.");
+      });
+
+      window._offerSlider = { showIndex, offers, getIndex: () => idx, startAuto, stopAuto };
+
+      setDebug("ready");
+    })();
+  </script>
+
+  <!-- Navigation Links (INLINE style fallback applied to each link for guaranteed result) -->
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'second' %}">gallery page</a></p>
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'third-nested' %}">theatre details</a></p>
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'fourth-nested' %}">registration</a></p>
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'fifth-nested' %}">Contact Us</a></p>
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'seventh-nested' %}">signup</a></p>
+  <p>Go to <a class="nav-link" style="color:#0096ff;font-weight:700;text-decoration:none;" href="{% url 'eighth-nested' %}">log in</a></p>
+
+</body>
+</html>

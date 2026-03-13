@@ -1,0 +1,78 @@
+/* FULL BLACK BACKGROUND */
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* RED HEADER BOX */
+h1 {
+    background-color: #e50914;      /* Red header box */
+    color: white;
+    padding: 15px 30px;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    border-radius: 10px;
+    font-size: 32px;
+    text-align: center;
+}
+
+/* SECTION TITLES */
+/* HIGHLIGHT SECTION TITLES */
+h2, h3 {
+    color: #e50914;           /* Red color highlight */
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #e50914;    /* Red underline highlight */
+    width: fit-content;
+}
+
+
+/* FLEX ROW FOR IMAGES */
+.section-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+/* IMAGE STYLING */
+.section-row img {
+    width: 230px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+/* Hover Zoom Effect */
+.section-row img:hover {
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+/* SKY-BLUE BOLD PARAGRAPHS */
+.nav-link {
+    color: #5bc0ff;      /* sky blue text */
+    font-weight: bold;   /* bold */
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+/* Make links sky-blue too */
+.nav-link a {
+    color: #5bc0ff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-link a:hover {
+    text-decoration: underline;
+}
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+<link rel="stylesheet" href="/static/css/signup.css">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #8EC5FC, #E0C3FC); /* soft sky blue + pink */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background: #ffffff;
+    padding: 30px 40px;
+    width: 380px;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    animation: pop 0.4s ease;
+}
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #6a11cb;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+input[type="submit"]:hover {
+    background: #2575fc;
+}
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+.login-link a {
+    color: #6a11cb;
+    font-weight: bold;
+    text-decoration: none;
+}
+.login-link a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>Sign up</h1>
+
+<form action="" method="POST" novalidate>
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="SignUp">
+</form>
+
+<p class="login-link">Already have an account?
+<a href="eighth">Login</a>
+</p>
+</div>
+</body>
+</html>
+
+<p class="nav-link">Go to <a href="eighth">Log in</a></p>
+<p class="nav-link">Go to <a href="{% url 'index' %}">Home page</a></p>
